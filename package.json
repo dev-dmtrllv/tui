@@ -1,0 +1,22 @@
+{
+	"name": "tui",
+	"version": "0.0.1",
+	"description": "A todo app",
+	"main": "main.bundle.js",
+	"private": true,
+	"scripts": {
+		"start": "node scripts/watch",
+		"dev": "node scripts/watch"
+	},
+	"author": "Dimitri Lilov",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/node": "^20.2.5",
+		"@types/webpack-env": "^1.18.1",
+		"source-map-loader": "^4.0.1",
+		"ts-loader": "^9.4.2",
+		"tsconfig-paths-webpack-plugin": "^4.0.1",
+		"typescript": "^5.0.2",
+		"webpack": "^5.76.2"
+	}
+}
