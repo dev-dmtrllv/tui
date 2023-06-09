@@ -8,7 +8,7 @@ Terminal.run(class extends App
 	{
 		return (
 			<layout width="fill" height="fill" direction="horizontal">
-				<layout direction="horizontal">
+				<layout direction="vertical">
 					<text color={Color.Red}>test</text>
 					<text color={Color.Green}>1</text>
 					<text color={Color.Yellow}>2</text>

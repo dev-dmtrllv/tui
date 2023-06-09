@@ -55,25 +55,26 @@ export class LayoutElement extends Element<LayoutProps>
 
 		if(width === "grow")
 		{
-			if(direction === "vertical")
-			{
-				this.layout.width = this.children.reduce((a, b) => b.layout.width > a ? b.layout.width : a, 0);
-			}
-			else
+			if(this.layout.direction === "horizontal")
 			{
 				this.layout.width = this.children.reduce((a, b) => b.layout.width + a, 0);
 			}
+			else
+			{
+				this.layout.width = this.children.reduce((a, b) => b.layout.width > a ? b.layout.width : a, 0);
+			}
+			
 		}
 
 		if(height === "grow")
 		{
-			if(direction == "vertical")
+			if(this.layout.direction === "horizontal")
 			{
-				this.layout.height = this.children.reduce((a, b) => b.layout.height + a, 0);
+				this.layout.height = this.children.reduce((a, b) => b.layout.height > a ? b.layout.height : a, 0);
 			}
 			else
 			{
-				this.layout.height = this.children.reduce((a, b) => b.layout.height > a ? b.layout.height : a, 0);
+				this.layout.height = this.children.reduce((a, b) => b.layout.height + a, 0);
 			}
 		}
 
@@ -84,6 +85,7 @@ export class LayoutElement extends Element<LayoutProps>
 
 	public override render()
 	{
+		// console.log(this.layout);
 		this.children.forEach(c => c.render());
 	}
 }
