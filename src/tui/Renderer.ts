@@ -1,6 +1,5 @@
 import { Element } from "@tui/elements/Element";
 import { TextElement } from "@tui/elements/TextElement";
-import util from "util";
 
 export namespace Renderer
 {
@@ -40,7 +39,13 @@ export namespace Renderer
 					}
 					else
 					{
-						const element = Element.create(component.type, component.props || {});
+						if (!component.props)
+							component.props = {};
+
+						if (component.type === "text")
+							component.props.text = component.children[0];
+
+						const element = Element.create(component.type, component.props);
 
 						parent.append(element);
 

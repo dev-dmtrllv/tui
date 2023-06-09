@@ -22,14 +22,6 @@ export abstract class Element<P extends {}>
 
 	protected parent: Element<any> | null = null;
 
-	// public direction: "vertical" | "horizontal" = "vertical";
-	// public width: "grow" | "fill" = "grow";
-	// public height: "grow" | "fill" = "grow";
-	// public x: number = 0;
-	// public y: number = 0;
-	// public color: number = 30;
-	// public background: number = 40;
-
 	public readonly layout: Layout = {
 		width: 0,
 		height: 0,
@@ -41,6 +33,7 @@ export abstract class Element<P extends {}>
 	public constructor(props: Partial<Layout> & P, children: Element<any>[] = [])
 	{
 		this.props = props;
+		this.layout.direction = props.direction || "vertical";
 		this.children = children;
 	}
 

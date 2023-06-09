@@ -29,7 +29,9 @@ export class LayoutElement extends Element<LayoutProps>
 
 	public calculateLayout(): void
 	{
-		const { height = "grow", width = "grow", direction = "vertical" } = this.props;
+		const { height = "grow", width = "grow" } = this.props;
+
+		const direction = this.parent?.layout.direction || "vertical";
 		
 		if (height === "fill")
 		{
@@ -71,7 +73,7 @@ export class LayoutElement extends Element<LayoutProps>
 			}
 			else
 			{
-				this.layout.height =  this.children.reduce((a, b) => b.layout.height > a ? b.layout.height : a, 0);
+				this.layout.height = this.children.reduce((a, b) => b.layout.height > a ? b.layout.height : a, 0);
 			}
 		}
 

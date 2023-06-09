@@ -34,14 +34,12 @@ declare namespace Tui
 		children?: Node | Node[]
 	};
 
-	type Color = {};
-
 	type ElementProps = {
 		children?: Node;
 		width?: number | "grow" | "fill";
 		height?: number | "grow" | "fill";
-		background?: Color | "inherit";
-		color?: Color | "inherit";
+		background?: import("./tui/Color").Color.Type | "inherit";
+		color?: import("./tui/Color").Color.Type | "inherit";
 		direction?: "horizontal" | "vertical";
 	};
 }
@@ -70,6 +68,8 @@ declare namespace JSX
 	interface IntrinsicElements
 	{
 		layout: Tui.ElementProps;
-		text: import("./tui/elements/TextElement").TextProps;
+		text: Tui.ElementProps & {
+			children: string | number | boolean;
+		}
 	}
 }
