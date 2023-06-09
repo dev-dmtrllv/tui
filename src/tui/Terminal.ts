@@ -3,7 +3,7 @@ import { App } from "./App";
 import { LayoutElement } from "@tui/elements/LayoutElement";
 
 import readline from "readline";
-import { Element, Layout } from "@tui/elements/Element";
+import { Layout } from "@tui/elements/Element";
 import { Renderer } from "@tui/Renderer";
 
 export class Terminal<T extends App>
@@ -74,7 +74,6 @@ export class Terminal<T extends App>
 		this.root.layout.height = process.stdout.rows;
 
 		this.root.calculateLayout();
-
 		this.root.render();
 	}
 }

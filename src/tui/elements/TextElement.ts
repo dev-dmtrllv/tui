@@ -41,11 +41,12 @@ export class TextElement extends Element<TextProps>
 	public render(): void
 	{
 		// console.log("\n\n", this.layout.x, this.layout.y)
-		process.stdout.write(`\x1b[${this.layout.y + 1};${this.layout.x + 1}H${Color.create(this.props.color || Color.White)}${this.props.text}`);
+		process.stdout.write(`\x1b[${this.layout.y + 1};${this.layout.x + 1}H${Color.create(this.props.color || Color.Default, this.props.background)}${this.props.text}`);
 	}
 }
 
 export type TextProps = {
 	text: string;
 	color?: Color.Type;
+	background?: Color.Type;
 };
