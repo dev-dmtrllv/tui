@@ -1,11 +1,11 @@
 import { Element } from "@tui/elements/Element";
 
-@Element.register("layout")
-export class LayoutElement extends Element<LayoutProps>
+@Element.register("text")
+export class TextElement extends Element<TextElementProps>
 {
 	
 }
 
-type LayoutProps = {
-	
+type TextElementProps = {
+	text: string;
 };
