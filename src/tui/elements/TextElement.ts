@@ -41,7 +41,13 @@ export class TextElement extends Element<TextProps>
 	public render(): void
 	{
 		// console.log("\n\n", this.layout.x, this.layout.y)
-		process.stdout.write(`\x1b[${this.layout.y + 1};${this.layout.x + 1}H${Color.create(this.props.color || Color.Default, this.props.background)}${this.props.text}`);
+		const w = this.layout.x+ this.layout.width;
+		const h = this.layout.y+ this.layout.height;
+		for(let j = this.layout.y; j < h; j++)
+			for(let i = this.layout.x; i < w; i++)
+			process.stdout.write(`\x1b[${j + 1};${i + 1}H${Color.create(this.color || Color.Default, this.background)} `);
+
+		process.stdout.write(`\x1b[${this.layout.y + 1};${this.layout.x + 1}H${Color.create(this.color || Color.Default, this.background)}${this.props.text}`);
 	}
 }
 

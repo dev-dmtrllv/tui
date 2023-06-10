@@ -1,3 +1,4 @@
+import { Color } from "@tui/Color";
 import { Element } from "@tui/elements/Element";
 
 @Element.register("layout")
@@ -86,6 +87,12 @@ export class LayoutElement extends Element<LayoutProps>
 	public override render()
 	{
 		// console.log(this.layout);
+		const w = this.layout.x+ this.layout.width;
+		const h = this.layout.y+ this.layout.height;
+		for(let j = this.layout.y; j < h; j++)
+			for(let i = this.layout.x; i < w; i++)
+				process.stdout.write(`\x1b[${j + 1};${i + 1}H${Color.create(this.color || Color.Default, this.background)} `);
+		
 		this.children.forEach(c => c.render());
 	}
 }
@@ -94,4 +101,6 @@ export type LayoutProps = {
 	width?: number | "grow" | "fill";
 	height?: number | "grow" | "fill";
 	direction?: "horizontal" | "vertical";
+	color?: Color.Type;
+	background?: Color.Type;
 };

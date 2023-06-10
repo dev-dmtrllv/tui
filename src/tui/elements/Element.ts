@@ -1,3 +1,5 @@
+import { Color } from "@tui/Color";
+
 export abstract class Element<P extends {}>
 {
 	private static readonly elements: { [key: string]: new <P extends {}>(props: P) => Element<P> } = {};
@@ -29,12 +31,34 @@ export abstract class Element<P extends {}>
 		y: 0,
 		direction: "vertical"
 	};
+	
+	public readonly style: Style;
 
-	public constructor(props: Partial<Layout> & P, children: Element<any>[] = [])
+	public get color(): Color.Type {
+		if(this.style.color)
+			return this.style.color;
+		if(this.parent)
+			return this.parent.color;
+		return Color.Default;
+	}
+
+	public get background(): Color.Type {
+		if(this.style.background)
+			return this.style.background;
+		if(this.parent)
+			return this.parent.background;
+		return Color.Default;
+	}
+
+	public constructor(props: Partial<Layout> & P & Style, children: Element<any>[] = [])
 	{
 		this.props = props;
 		this.layout.direction = props.direction || "vertical";
 		this.children = children;
+		this.style = {
+			background: props.background,
+			color: props.color
+		} as Style;
 	}
 
 	public readonly append = <P extends {}>(element: Element<P>): Element<P> =>
@@ -81,4 +105,9 @@ export type Layout = {
 	x: number;
 	y: number;
 	direction: "horizontal" | "vertical";
+};
+
+export type Style  = {
+	color?: Color.Type;
+	background?: Color.Type;
 };
